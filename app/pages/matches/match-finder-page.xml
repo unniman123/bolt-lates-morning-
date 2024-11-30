@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Find Match" class="action-bar">
+        <NavigationButton visibility="visible" />
+    </ActionBar>
+
+    <GridLayout rows="auto, *, auto">
+        <!-- Game Selection -->
+        <StackLayout row="0" class="p-4 bg-white border-b border-gray-200">
+            <Label text="Select Game" class="text-lg font-bold mb-2" />
+            <GridLayout columns="*, *, *" class="mb-4">
+                <Button col="0" text="Fortnite" tap="{{ selectGame }}" class="{{ selectedGame === 'Fortnite' ? 'btn-primary' : 'btn-secondary' }} m-1" />
+                <Button col="1" text="FIFA" tap="{{ selectGame }}" class="{{ selectedGame === 'FIFA' ? 'btn-primary' : 'btn-secondary' }} m-1" />
+                <Button col="2" text="COD" tap="{{ selectGame }}" class="{{ selectedGame === 'COD' ? 'btn-primary' : 'btn-secondary' }} m-1" />
+            </GridLayout>
+            
+            <Label text="Entry Fee" class="text-lg font-bold mb-2" />
+            <GridLayout columns="*, *, *" class="mb-4">
+                <Button col="0" text="$1" tap="{{ selectFee }}" class="{{ entryFee === 1 ? 'btn-primary' : 'btn-secondary' }} m-1" />
+                <Button col="1" text="$5" tap="{{ selectFee }}" class="{{ entryFee === 5 ? 'btn-primary' : 'btn-secondary' }} m-1" />
+                <Button col="2" text="$10" tap="{{ selectFee }}" class="{{ entryFee === 10 ? 'btn-primary' : 'btn-secondary' }} m-1" />
+            </GridLayout>
+        </StackLayout>
+
+        <!-- Available Players -->
+        <ListView row="1" items="{{ availablePlayers }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout columns="*, auto" class="list-group-item p-4">
+                    <StackLayout col="0">
+                        <Label text="{{ username }}" class="font-bold" />
+                        <Label text="{{ 'Win Rate: ' + win_rate + '%' }}" class="text-gray-600" />
+                    </StackLayout>
+                    <Button col="1" 
+                            text="Challenge" 
+                            tap="{{ $parents['ListView'].onChallenge }}" 
+                            class="btn btn-primary" 
+                            verticalAlignment="center" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <!-- Search Status -->
+        <StackLayout row="2" class="p-4 bg-white border-t border-gray-200">
+            <Button text="{{ isSearching ? 'Cancel Search' : 'Quick Match' }}" 
+                    tap="{{ toggleSearch }}" 
+                    class="{{ isSearching ? 'btn btn-secondary' : 'btn btn-primary' }}"
+                    isEnabled="{{ selectedGame && entryFee > 0 }}" />
+        </StackLayout>
+    </GridLayout>
+</Page>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Tournaments" class="action-bar">
+        <ActionItem tap="{{ createTournament }}" ios.position="right" android.position="actionBar">
+            <Label text="+" class="text-2xl font-bold text-white" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <StackLayout row="0" class="p-2 bg-gray-100">
+            <FlexboxLayout class="justify-between">
+                <Button text="All" tap="{{ filterByStatus }}" class="btn-sm" />
+                <Button text="Open" tap="{{ filterByStatus }}" class="btn-sm" />
+                <Button text="In Progress" tap="{{ filterByStatus }}" class="btn-sm" />
+                <Button text="Completed" tap="{{ filterByStatus }}" class="btn-sm" />
+            </FlexboxLayout>
+        </StackLayout>
+
+        <ListView row="1" items="{{ tournaments }}" itemTap="{{ onTournamentTap }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout columns="*, auto" class="list-group-item p-4">
+                    <StackLayout col="0">
+                        <Label text="{{ title }}" class="font-bold text-lg" />
+                        <Label text="{{ 'Game: ' + game_type }}" class="text-gray-600" />
+                        <Label text="{{ 'Entry Fee: $' + entry_fee }}" class="text-gray-600" />
+                        <Label text="{{ 'Prize Pool: $' + prize_pool }}" class="text-green-600 font-bold" />
+                    </StackLayout>
+                    <StackLayout col="1" verticalAlignment="center">
+                        <Label text="{{ current_participants + '/' + max_participants }}" class="text-center" />
+                        <Label text="{{ status }}" class="text-center text-xs" />
+                    </StackLayout>
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Login" class="action-bar" />
+    
+    <StackLayout class="p-4">
+        <Label text="Welcome back!" class="text-2xl font-bold mb-4" />
+        
+        <TextField hint="Email" text="{{ email }}" keyboardType="email" class="input mb-2" />
+        <TextField hint="Password" text="{{ password }}" secure="true" class="input mb-4" />
+        
+        <Button text="Login" tap="{{ onLogin }}" class="btn btn-primary mb-2" />
+        <Button text="Register" tap="{{ onRegister }}" class="btn btn-secondary" />
+        
+        <ActivityIndicator busy="{{ isLoading }}" class="m-4" />
+    </StackLayout>
+</Page>

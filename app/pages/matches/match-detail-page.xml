@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Match Details" class="action-bar">
+        <NavigationButton visibility="{{ canGoBack ? 'visible' : 'collapsed' }}" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="{{ 'Match #' + match.id }}" class="text-xl font-bold mb-4" />
+            
+            <GridLayout columns="*, *" rows="auto, auto, auto" class="bg-gray-100 p-4 rounded-lg mb-4">
+                <Label col="0" row="0" text="Status:" class="text-gray-600" />
+                <Label col="1" row="0" text="{{ match.status }}" class="font-bold" />
+                
+                <Label col="0" row="1" text="Scheduled Time:" class="text-gray-600" />
+                <Label col="1" row="1" text="{{ match.scheduled_time | date }}" class="font-bold" />
+                
+                <Label col="0" row="2" text="Tournament:" class="text-gray-600" />
+                <Label col="1" row="2" text="{{ tournament.title }}" class="font-bold" />
+            </GridLayout>
+
+            <GridLayout columns="*, *" class="mb-4">
+                <StackLayout col="0" class="p-2">
+                    <Label text="Player 1" class="text-center font-bold" />
+                    <Label text="{{ player1.username }}" class="text-center" />
+                    <TextField text="{{ player1Score }}" 
+                             keyboardType="number" 
+                             hint="Score"
+                             class="input text-center"
+                             isEnabled="{{ canSubmitScore }}" />
+                </StackLayout>
+                
+                <StackLayout col="1" class="p-2">
+                    <Label text="Player 2" class="text-center font-bold" />
+                    <Label text="{{ player2.username }}" class="text-center" />
+                    <TextField text="{{ player2Score }}" 
+                             keyboardType="number" 
+                             hint="Score"
+                             class="input text-center"
+                             isEnabled="{{ canSubmitScore }}" />
+                </StackLayout>
+            </GridLayout>
+
+            <Button text="Submit Score" 
+                    tap="{{ submitScore }}" 
+                    class="btn btn-primary mb-2"
+                    isEnabled="{{ canSubmitScore }}" />
+            
+            <Button text="Dispute Match" 
+                    tap="{{ disputeMatch }}" 
+                    class="btn btn-secondary"
+                    isEnabled="{{ canDispute }}" />
+        </StackLayout>
+    </ScrollView>
+</Page>

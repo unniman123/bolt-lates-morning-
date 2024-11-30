@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Wallet" class="action-bar" />
+    
+    <GridLayout rows="auto, *">
+        <StackLayout row="0" class="p-6 bg-white">
+            <Label text="Balance" class="text-gray-600" />
+            <Label text="{{ '$' + balance }}" class="text-3xl font-bold" />
+            
+            <FlexboxLayout class="justify-around mt-4">
+                <Button text="Deposit" tap="{{ onDeposit }}" class="btn btn-primary" />
+                <Button text="Withdraw" tap="{{ onWithdraw }}" class="btn btn-secondary" />
+            </FlexboxLayout>
+        </StackLayout>
+
+        <ListView row="1" items="{{ transactions }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout columns="*, auto" class="list-group-item p-4">
+                    <StackLayout col="0">
+                        <Label text="{{ type }}" class="font-bold" />
+                        <Label text="{{ created_at | date }}" class="text-gray-600 text-sm" />
+                    </StackLayout>
+                    <Label col="1" 
+                           text="{{ (type === 'deposit' || type === 'prize' ? '+' : '-') + '$' + amount }}"
+                           class="{{ type === 'deposit' || type === 'prize' ? 'text-green-600' : 'text-red-600' }}"
+                           verticalAlignment="center" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </GridLayout>
+</Page>

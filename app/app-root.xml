@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabView xmlns="http://schemas.nativescript.org/tns.xsd" selectedIndex="0" androidTabsPosition="bottom">
+    <TabView.items>
+        <TabViewItem title="Tournaments" ios:iconSource="res://tabIcons/tournament" android:iconSource="res://tournament">
+            <Frame defaultPage="pages/tournaments/tournaments-page" />
+        </TabViewItem>
+        
+        <TabViewItem title="Matches" ios:iconSource="res://tabIcons/matches" android:iconSource="res://matches">
+            <Frame defaultPage="pages/matches/matches-page" />
+        </TabViewItem>
+        
+        <TabViewItem title="Wallet" ios:iconSource="res://tabIcons/wallet" android:iconSource="res://wallet">
+            <Frame defaultPage="pages/wallet/wallet-page" />
+        </TabViewItem>
+        
+        <TabViewItem title="Profile" ios:iconSource="res://tabIcons/profile" android:iconSource="res://profile">
+            <Frame defaultPage="pages/profile/profile-page" />
+        </TabViewItem>
+    </TabView.items>
+</TabView>

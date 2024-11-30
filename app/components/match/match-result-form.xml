@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<GridLayout xmlns="http://schemas.nativescript.org/tns.xsd" rows="auto, auto, auto" class="p-4">
+    <GridLayout row="0" columns="*, auto, *" class="mb-4">
+        <StackLayout col="0" class="text-center">
+            <Label text="{{ player1.username }}" class="font-bold" />
+            <TextField text="{{ player1Score }}" 
+                      keyboardType="number" 
+                      class="input text-center w-24"
+                      hint="Score" />
+        </StackLayout>
+        
+        <Label col="1" text="vs" class="text-center mx-4" />
+        
+        <StackLayout col="2" class="text-center">
+            <Label text="{{ player2.username }}" class="font-bold" />
+            <TextField text="{{ player2Score }}" 
+                      keyboardType="number" 
+                      class="input text-center w-24"
+                      hint="Score" />
+        </StackLayout>
+    </GridLayout>
+
+    <Button row="1" 
+            text="Submit Result" 
+            tap="{{ submitResult }}" 
+            class="btn btn-primary"
+            isEnabled="{{ isValid }}" />
+
+    <ActivityIndicator row="2" 
+                      busy="{{ isSubmitting }}" 
+                      class="m-4" />
+</GridLayout>

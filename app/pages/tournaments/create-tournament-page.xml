@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Create Tournament" class="action-bar">
+        <NavigationButton visibility="visible" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Tournament Details" class="text-2xl font-bold mb-4" />
+            
+            <!-- Basic Info -->
+            <TextField text="{{ title }}" 
+                      hint="Tournament Title" 
+                      class="input mb-4" />
+
+            <!-- Game Selection -->
+            <Label text="Select Game" class="font-bold mb-2" />
+            <GridLayout columns="*, *, *" class="mb-4">
+                <Button col="0" text="Fortnite" tap="{{ selectGame }}" 
+                        class="{{ gameType === 'Fortnite' ? 'btn-primary' : 'btn-secondary' }} m-1" />
+                <Button col="1" text="FIFA" tap="{{ selectGame }}" 
+                        class="{{ gameType === 'FIFA' ? 'btn-primary' : 'btn-secondary' }} m-1" />
+                <Button col="2" text="COD" tap="{{ selectGame }}" 
+                        class="{{ gameType === 'COD' ? 'btn-primary' : 'btn-secondary' }} m-1" />
+            </GridLayout>
+
+            <!-- Tournament Settings -->
+            <GridLayout columns="*, *" rows="auto, auto, auto" class="mb-4">
+                <Label col="0" row="0" text="Entry Fee ($)" class="font-bold" />
+                <TextField col="1" row="0" text="{{ entryFee }}" 
+                          keyboardType="number" 
+                          class="input" />
+
+                <Label col="0" row="1" text="Max Players" class="font-bold" />
+                <TextField col="1" row="1" text="{{ maxParticipants }}" 
+                          keyboardType="number" 
+                          class="input" />
+
+                <Label col="0" row="2" text="Start Time" class="font-bold" />
+                <DateTimePicker col="1" row="2" 
+                               date="{{ startTime }}"
+                               class="mb-4" />
+            </GridLayout>
+
+            <!-- Prize Pool Preview -->
+            <StackLayout class="bg-gray-100 p-4 rounded-lg mb-4">
+                <Label text="Prize Pool Distribution" class="font-bold mb-2" />
+                <Label text="{{ 'Total Prize Pool: $' + totalPrizePool }}" class="text-green-600" />
+                <Label text="{{ '1st Place: $' + firstPlacePrize }}" />
+                <Label text="{{ '2nd Place: $' + secondPlacePrize }}" />
+                <Label text="{{ '3rd Place: $' + thirdPlacePrize }}" />
+            </StackLayout>
+
+            <!-- Create Button -->
+            <Button text="Create Tournament" 
+                    tap="{{ createTournament }}" 
+                    class="btn btn-primary"
+                    isEnabled="{{ isValid }}" />
+        </StackLayout>
+    </ScrollView>
+</Page>

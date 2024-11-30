@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<GridLayout xmlns="http://schemas.nativescript.org/tns.xsd" rows="auto, *">
+    <Label row="0" text="Tournament Bracket" class="text-xl font-bold p-4" />
+    <ScrollView row="1" orientation="horizontal">
+        <GridLayout id="bracketContainer" columns="{{ bracketColumns }}" class="p-4">
+            <Repeater items="{{ rounds }}" class="bracket-round">
+                <Repeater.itemTemplate>
+                    <StackLayout col="{{ roundIndex }}" class="mx-2">
+                        <Label text="{{ 'Round ' + (roundIndex + 1) }}" class="text-center font-bold mb-2" />
+                        <Repeater items="{{ matches }}" class="bracket-matches">
+                            <Repeater.itemTemplate>
+                                <GridLayout rows="auto, auto" class="bracket-match p-2 m-2 bg-white rounded-lg shadow">
+                                    <GridLayout row="0" columns="*, auto" class="{{ player1Winner ? 'bg-green-100' : '' }} p-2">
+                                        <Label col="0" text="{{ player1?.username || 'TBD' }}" class="text-sm" />
+                                        <Label col="1" text="{{ player1Score }}" class="text-sm font-bold" />
+                                    </GridLayout>
+                                    <GridLayout row="1" columns="*, auto" class="{{ player2Winner ? 'bg-green-100' : '' }} p-2">
+                                        <Label col="0" text="{{ player2?.username || 'TBD' }}" class="text-sm" />
+                                        <Label col="1" text="{{ player2Score }}" class="text-sm font-bold" />
+                                    </GridLayout>
+                                </GridLayout>
+                            </Repeater.itemTemplate>
+                        </Repeater>
+                    </StackLayout>
+                </Repeater.itemTemplate>
+            </Repeater>
+        </GridLayout>
+    </ScrollView>
+</GridLayout>

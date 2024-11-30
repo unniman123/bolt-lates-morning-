@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Tournament Details" class="action-bar">
+        <NavigationButton visibility="{{ canGoBack ? 'visible' : 'collapsed' }}" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="{{ tournament.title }}" class="text-2xl font-bold mb-4" />
+            
+            <GridLayout columns="*, *" rows="auto, auto, auto" class="mb-4">
+                <Label col="0" row="0" text="Game Type:" class="text-gray-600" />
+                <Label col="1" row="0" text="{{ tournament.game_type }}" class="font-bold" />
+                
+                <Label col="0" row="1" text="Entry Fee:" class="text-gray-600" />
+                <Label col="1" row="1" text="{{ '$' + tournament.entry_fee }}" class="font-bold" />
+                
+                <Label col="0" row="2" text="Prize Pool:" class="text-gray-600" />
+                <Label col="1" row="2" text="{{ '$' + tournament.prize_pool }}" class="font-bold text-green-600" />
+            </GridLayout>
+
+            <StackLayout class="bg-gray-100 p-4 rounded-lg mb-4">
+                <Label text="Participants" class="font-bold mb-2" />
+                <Label text="{{ tournament.current_participants + ' / ' + tournament.max_participants }}" 
+                       class="text-center text-lg" />
+            </StackLayout>
+
+            <Button text="Join Tournament" 
+                    tap="{{ joinTournament }}" 
+                    class="btn btn-primary"
+                    isEnabled="{{ canJoin }}" />
+
+            <Label text="Matches" class="font-bold mt-4 mb-2" />
+            <ListView items="{{ matches }}" class="list-group">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" class="list-group-item p-4">
+                        <Label col="0" text="{{ 'Match ' + ($index + 1) }}" class="font-bold" />
+                        <Label col="1" text="{{ status }}" class="text-gray-600" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Profile" class="action-bar" />
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Image src="{{ profile.avatar_url || 'res://default_avatar' }}" 
+                   width="100" 
+                   height="100" 
+                   class="rounded-full mb-4" />
+            
+            <Label text="Username" class="text-gray-600 mb-1" />
+            <TextField text="{{ username }}" 
+                      hint="Enter username" 
+                      class="input mb-4" />
+            
+            <Label text="Game ID" class="text-gray-600 mb-1" />
+            <TextField text="{{ gameId }}" 
+                      hint="Enter your game ID" 
+                      class="input mb-4" />
+            
+            <Button text="Update Profile" 
+                    tap="{{ updateProfile }}" 
+                    class="btn btn-primary mb-4" />
+            
+            <Label text="Match History" class="text-xl font-bold mb-2" />
+            <ListView items="{{ matchHistory }}" class="list-group">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" class="list-group-item p-4">
+                        <StackLayout col="0">
+                            <Label text="{{ opponent }}" class="font-bold" />
+                            <Label text="{{ tournament }}" class="text-gray-600 text-sm" />
+                        </StackLayout>
+                        <StackLayout col="1" verticalAlignment="center">
+                            <Label text="{{ result }}" 
+                                   class="{{ result === 'Won' ? 'text-green-600' : 'text-red-600' }}" />
+                            <Label text="{{ created_at | date }}" class="text-gray-600 text-xs" />
+                        </StackLayout>
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>

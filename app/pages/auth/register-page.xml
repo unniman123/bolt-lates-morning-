@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Register" class="action-bar" />
+    
+    <StackLayout class="p-4">
+        <Label text="Create your account" class="text-2xl font-bold mb-4" />
+        
+        <TextField hint="Username" text="{{ username }}" class="input mb-2" />
+        <TextField hint="Email" text="{{ email }}" keyboardType="email" class="input mb-2" />
+        <TextField hint="Password" text="{{ password }}" secure="true" class="input mb-2" />
+        <TextField hint="Game ID (optional)" text="{{ gameId }}" class="input mb-4" />
+        
+        <Button text="Register" tap="{{ onRegister }}" class="btn btn-primary mb-2" />
+        <Button text="Back to Login" tap="{{ onBackToLogin }}" class="btn btn-secondary" />
+        
+        <ActivityIndicator busy="{{ isLoading }}" class="m-4" />
+    </StackLayout>
+</Page>

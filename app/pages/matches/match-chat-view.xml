@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<GridLayout rows="*, auto" class="p-4">
+    <ListView row="0" items="{{ messages }}" class="mb-2">
+        <ListView.itemTemplate>
+            <GridLayout columns="auto, *" class="{{ user_id === currentUserId ? 'justify-end' : '' }}">
+                <Label col="0" 
+                       text="{{ message }}" 
+                       class="{{ user_id === currentUserId ? 'bg-blue-500 text-white' : 'bg-gray-200' }} p-2 rounded-lg m-1" 
+                       textWrap="true" />
+            </GridLayout>
+        </ListView.itemTemplate>
+    </ListView>
+
+    <GridLayout row="1" columns="*, auto" class="bg-white p-2">
+        <TextField col="0" 
+                  text="{{ messageText }}" 
+                  hint="Type a message..." 
+                  class="input m-0" />
+        <Button col="1" 
+                text="Send" 
+                tap="{{ sendMessage }}" 
+                class="btn btn-primary ml-2" />
+    </GridLayout>
+</GridLayout>

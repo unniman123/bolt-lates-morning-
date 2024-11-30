@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Gaming Platform" class="action-bar">
+        <ActionItem tap="{{ logout }}" ios.position="right" android.position="actionBar">
+            <Label text="Logout" class="text-white" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <ScrollView row="0">
+            <StackLayout class="p-4">
+                <!-- User Stats -->
+                <GridLayout columns="*, *" rows="auto" class="bg-blue-500 p-4 rounded-lg mb-4">
+                    <StackLayout col="0">
+                        <Label text="Win Rate" class="text-white text-sm" />
+                        <Label text="{{ winRate + '%' }}" class="text-white text-xl font-bold" />
+                    </StackLayout>
+                    <StackLayout col="1">
+                        <Label text="Total Earnings" class="text-white text-sm" />
+                        <Label text="{{ '$' + totalEarnings }}" class="text-white text-xl font-bold" />
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- Active Tournaments -->
+                <Label text="Active Tournaments" class="text-xl font-bold mb-2" />
+                <ListView items="{{ activeTournaments }}" class="mb-4" height="200">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" class="p-4 bg-white rounded-lg mb-2">
+                            <StackLayout col="0">
+                                <Label text="{{ title }}" class="font-bold" />
+                                <Label text="{{ 'Prize Pool: $' + prize_pool }}" class="text-green-600" />
+                            </StackLayout>
+                            <Label col="1" 
+                                   text="{{ current_participants + '/' + max_participants }}" 
+                                   class="text-gray-600" 
+                                   verticalAlignment="center" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+
+                <!-- Upcoming Matches -->
+                <Label text="Upcoming Matches" class="text-xl font-bold mb-2" />
+                <ListView items="{{ upcomingMatches }}" height="200">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="auto, *, auto" class="p-4 bg-white rounded-lg mb-2">
+                            <Label col="0" text="{{ scheduled_time | timeOnly }}" class="text-gray-600" />
+                            <Label col="1" text="{{ opponent }}" class="text-center font-bold" />
+                            <Label col="2" text="{{ game_type }}" class="text-gray-600" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Quick Actions -->
+        <GridLayout row="1" columns="*, *" class="p-4 bg-white border-t border-gray-200">
+            <Button col="0" text="Find Match" tap="{{ findMatch }}" class="btn btn-primary mr-2" />
+            <Button col="1" text="Join Tournament" tap="{{ browseTournaments }}" class="btn btn-secondary" />
+        </GridLayout>
+    </GridLayout>
+</Page>
